@@ -1,0 +1,23 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"constraints.gatekeeper.sh/v1beta1","kind":"K8sRequiredLabels","metadata":{"annotations":{},"name":"pod-must-have-metadata"},"spec":{"match":{"kinds":[{"apiGroups":[""],"kinds":["Pod"]}]},"parameters":{"labels":["owner","env"]}}}
+  creationTimestamp: "2026-04-24T15:53:14Z"
+  generation: 1
+  name: pod-must-have-metadata
+  resourceVersion: "12906"
+  uid: 02fa0e77-63e7-4047-9454-2359b2c2c806
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+  parameters:
+    labels:
+    - owner
+    - env
