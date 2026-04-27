@@ -86,3 +86,30 @@ Each major component explains:
 
 ## Repository Structure
 
+---
+
+## Platform Execution Model
+
+This system is operated through a unified interface:
+
+The platform follows a layered execution model:
+
+1. Infrastructure provisioning
+2. Cluster initialization
+3. Policy enforcement
+4. GitOps reconciliation
+5. Continuous validation
+
+---
+
+## Design Intent
+
+This repository demonstrates a complete DevSecOps platform lifecycle:
+
+- infrastructure definition
+- security modeling
+- operational procedures
+- continuous validation
+- GitOps-based reconciliation
+
+It is designed as a reference implementation of secure platform engineering principles.

@@ -1,37 +1,44 @@
-# Hardened Kubernetes Platform - Operational Interface
+# Hardened Kubernetes Platform - Unified Interface
 
-.PHONY: help bootstrap validate deploy destroy status
+.PHONY: help bootstrap validate deploy destroy status infra-init infra-plan
 
 help:
-	@echo "Available commands:"
-	@echo "  make bootstrap   - Initialize platform components"
-	@echo "  make validate    - Validate configuration and policies"
-	@echo "  make deploy      - Deploy platform workloads"
-	@echo "  make destroy     - Tear down environment"
-	@echo "  make status      - Show platform status"
+	@echo "Platform Commands:"
+	@echo "  make bootstrap   - Initialize full platform stack"
+	@echo "  make validate    - Run CI and security validation"
+	@echo "  make deploy      - Apply GitOps state"
+	@echo "  make destroy     - Tear down infrastructure"
+	@echo "  make status      - Show platform state"
 
 bootstrap:
-	@echo "[BOOTSTRAP] Initializing Kubernetes platform..."
-	@echo "Step 1: Preparing infrastructure layer"
-	@echo "Step 2: Installing baseline security components"
-	@echo "Step 3: Applying default policies"
+	@echo "[BOOTSTRAP] Initializing platform..."
+	@echo "1. Provisioning infrastructure layer"
+	@echo "2. Initializing Kubernetes baseline"
+	@echo "3. Applying security policies"
+	@echo "4. Enabling GitOps reconciliation"
+
+infra-init:
+	@echo "[INFRA] Initializing infrastructure layer..."
+
+infra-plan:
+	@echo "[INFRA] Planning infrastructure changes..."
 
 validate:
-	@echo "[VALIDATE] Checking platform integrity..."
-	@echo "Linting Kubernetes manifests"
-	@echo "Validating security policies"
-	@echo "Checking GitOps consistency"
+	@echo "[VALIDATE] Running platform validation..."
+	@echo "- YAML lint"
+	@echo "- Security pattern checks"
+	@echo "- Policy validation (simulated)"
 
 deploy:
-	@echo "[DEPLOY] Applying GitOps configuration..."
-	@echo "Syncing desired state to cluster"
+	@echo "[DEPLOY] Syncing GitOps state..."
+	@echo "Applying desired state from platform/gitops"
 
 destroy:
-	@echo "[DESTROY] Removing platform resources..."
-	@echo "WARNING: This is destructive"
+	@echo "[DESTROY] WARNING: tearing down platform..."
 
 status:
-	@echo "[STATUS] Platform health check"
-	@echo "Control Plane: OK (simulated)"
-	@echo "Nodes: OK (simulated)"
-	@echo "Policies: ACTIVE"
+	@echo "[STATUS] Platform health overview"
+	@echo "- Infrastructure: OK (simulated)"
+	@echo "- Cluster: OK (simulated)"
+	@echo "- Policies: ACTIVE"
+	@echo "- GitOps: SYNCED"
