@@ -1,5 +1,7 @@
 # Hardened Kubernetes Governance Project (3-Tier)
 
+
+
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
@@ -22,5 +24,13 @@ An enterprise-grade deployment of a 3-tier application (Hair Product App) on a h
 ## 🏗 Deployment
 The cluster uses ConfigMaps for dynamic frontend injection and Persistent Volumes for database reliability. All manifests are governed by Gatekeeper constraints to ensure only compliant workloads reach production.
 
+
+## Security Verification
+This platform successfully implements Admission Control using OPA Gatekeeper.
+
+### Test Case: Privilege Escalation
+- **Target:** `attacks/privilege-escalation/malicious-pod.yaml`
+- **Action:** Blocked by `K8sPSPPrivilegedContainer` constraint.
+- **Result:** `Error from server (Forbidden): admission webhook "validation.gatekeeper.sh" denied the request`
 ---
 *Created by Sheriff Salam - Senior DevOps & SRE*
