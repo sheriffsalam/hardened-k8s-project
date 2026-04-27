@@ -1,23 +1,18 @@
-# Production-Hardened Kubernetes Platform (Enterprise Grade)
+# Production-Hardened Kubernetes Platform
 
-[![Security: OPA Gatekeeper](https://img.shields.io/badge/Security-OPA%20Gatekeeper-blue)](https://open-policy-agent.github.io/gatekeeper/website/docs/)
+An enterprise-grade Kubernetes bootstrap optimized for security and resource efficiency. This platform implements a **Defense-in-Depth** strategy to mitigate container escapes and unauthorized access.
 
-## 🚀 Overview
-This repository contains a production-ready, security-hardened Kubernetes bootstrap. Unlike standard clusters, this platform implements **Admission Control**, **Runtime Security**, and **Least-Privilege RBAC** by default.
+## 🛡️ Core Security Controls
+- **Admission Control**: OPA Gatekeeper enforcing `K8sPSPPrivilegedContainer`.
+- **Infrastructure Hardening**: Automated CIS Benchmark remediation for K3s.
+- **Identity & Access**: Strict RBAC and hardened Kubeconfig permissions.
 
-## 🛡️ Hardening Features
-- **Admission Control**: Prevents privileged container execution via OPA Gatekeeper.
-- **Node Hardening**: Automated CIS Benchmark remediation for K3s.
-- **Resource Triage**: SRE-optimized deployments for constrained environments.
+## 🚀 Key Engineering Accomplishments
+- **Resource Triage**: Optimized security controller footprint for low-memory environments (t3.micro).
+- **Incident Recovery**: Resolved stuck namespace finalizers and API server timeouts during high-load events.
 
-## 📁 Repository Structure
-- `platform/`: Core infrastructure and security manifests.
-- `docs/`: Architecture diagrams, Threat Models, and ADRs.
-- `scripts/`: Validation and compliance testing (kube-bench).
-
-## 🛠️ Operational Validation
-To verify the hardening policy, run:
+## 📊 Verification
+Run the automated adversarial test suite:
 ```bash
-kubectl apply -f platform/validation-tests/privilege-escalation/malicious-pod.yaml
-# Expected Result: 403 Forbidden (Denied by Gatekeeper)
+./tests/adversarial/verify-security.sh
 ```

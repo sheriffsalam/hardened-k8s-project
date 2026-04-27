@@ -1,0 +1,21 @@
+name: Security Policy Validation
+
+on: [push, pull_request]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install OPA & Conftest
+        run: |
+          wget https://github.com/open-policy-agent/conftest/releases/download/v0.37.0/conftest_0.37.0_Linux_x86_64.tar.gz
+          tar xzf conftest_0.37.0_Linux_x86_64.tar.gz
+          sudo mv conftest /usr/local/bin
+
+      - name: Static Analysis of Kubernetes Manifests
+        run: |
+          # This checks for common security misconfigurations before deployment
+          conftest test platform/security/ --policy policies/
